@@ -19,6 +19,10 @@ The list of the first activites defined are:
 - Javascript
 - Typescript
 - GitHub API
+- NPM
+- NVM
+- NODE
+
 
 ## List of Tools currently used
 
@@ -33,3 +37,6 @@ The list of the first activites defined are:
 
 ## Mockup
 ![App Screenshot](https://innovastorga.com/images-fulltimeforce/mockup1.png)
+
+## Design
+![App Screenshot](https://innovastorga.com/images-fulltimeforce/design1.png)
