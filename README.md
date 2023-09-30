@@ -8,7 +8,7 @@ The list of the first activites defined are:
 
 
 ## List of Activities
-![App Screenshot](https://innovastorga.com/images-fulltimeforce/trello2.png)
+![App Screenshot](https://innovastorga.com/images-fulltimeforce/trello3.png)
 
 
 ## List of Technologies currently used
