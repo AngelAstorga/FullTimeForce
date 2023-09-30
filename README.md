@@ -8,7 +8,7 @@ The list of the first activites defined are:
 
 
 ## List of Activities
-![App Screenshot](https://innovastorga.com/images-fulltimeforce/trello1.png)
+![App Screenshot](https://innovastorga.com/images-fulltimeforce/trello2.png)
 
 
 ## List of Technologies currently used
@@ -18,14 +18,18 @@ The list of the first activites defined are:
 - HTML
 - Javascript
 - Typescript
-- Node
-- NPM
-- NVM
+- GitHub API
 
 ## List of Tools currently used
 
 - Filezilla
 - Trello
 - Figma
-- GitHub
+- Github
 - Git
+- Insomnia
+
+
+
+## Mockup
+![App Screenshot](https://innovastorga.com/images-fulltimeforce/mockup1.png)
