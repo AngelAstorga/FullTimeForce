@@ -1,0 +1,57 @@
+.CommitContainer{
+    width: 100%;
+    padding-bottom: 15px;
+}
+.CommitWrapper{
+    box-shadow: 0px 0px 3px 3px rgba(var(--blueDark),0.15);
+    border-radius: 3px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 7px;
+    padding-top: 17px;
+    padding-left: 35px;
+    padding-bottom: 17px;
+}
+.CommitWrapper:hover{
+    box-shadow: 0px 0px 3px 4px rgba(var(--blueDark),0.5);
+}
+.Commit__description{
+    color: rgb(var(--blueDark));
+    font-weight: 500;
+    font-size: 15px;
+}
+.Commit__userContainer{
+
+}
+.Commit__userImg{
+
+}
+.Commit__commiterName{
+    color: rgba(var(--green),1);
+    font-size: 14px;
+}
+.Commit__commitTime{
+    color: rgba(var(--blue),0.7);
+    font-size: 12px;
+    padding-left: 7px;
+}
+.Commit__shaContainer{
+    position: absolute;
+    right: 60px;
+    top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 3px;
+}
+.Commit__copyImg{
+    width: 24px;
+    height: 24px;
+}
+.Commit__shaCode{
+    color: rgb(var(--blueDark));
+    font-weight: 600;
+    font-size: 14px;
+}

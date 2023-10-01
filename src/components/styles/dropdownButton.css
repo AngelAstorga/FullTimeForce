@@ -1,0 +1,28 @@
+.DropdownButtonContainer{
+
+}
+.DropdownButtonWrapper{
+
+}
+.DropdownButton{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(var(--blue));
+    font-weight: 600;
+    background-color: var(--white);
+    border: 1px solid rgba( var(--blue), 1);
+    border-radius: 3px;
+    padding: 3px 11px 3px 7px;
+}
+.DropdownButton:hover{
+    box-shadow: 0px 0px 3px 3px rgba( var(--blue), 0.4);
+}
+.DropdownButton__image{
+    width: 25px;
+    height: 25px;
+}
+.DropdownButton__arrow{
+    padding-left: 3px;
+}

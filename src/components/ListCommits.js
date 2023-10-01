@@ -1,5 +1,7 @@
 import React from "react";
 import { Octokit } from "octokit";
+import "./styles/listCommits.css";
+import {Commit} from "./Commit";
 
 class ListCommits extends React.Component{
     constructor(props){
@@ -38,8 +40,37 @@ class ListCommits extends React.Component{
 
     render(){
         return(
-            <div>
-                {this.state.response.length}
+            <div className="ListCommitsContainer">
+                <div className="ListCommitsWrapper">
+                    <div className="ListCommits__listDateGroup">
+                        <div className="ListCommits__listDateGroupHeader">
+                            <span className="ListCommits__listDateGroupTitle"> 01 October 2023</span>
+                        </div>
+                        <div className="ListCommits__listDateGroupBody">
+                        <Commit
+                            description="Description of commit"
+                            commiterName="Angel Astorga"
+                            commiterImg=""
+                            commitTime="23:00:02"
+                            shaCode="s8s54f7"
+                        />
+                        <Commit
+                            description="Description of commit"
+                            commiterName="Angel Astorga"
+                            commiterImg=""
+                            commitTime="23:00:02"
+                            shaCode="s8s54f7"
+                        />
+                        <Commit
+                            description="Description of commit"
+                            commiterName="Angel Astorga"
+                            commiterImg=""
+                            commitTime="23:00:02"
+                            shaCode="s8s54f7"
+                        />
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
