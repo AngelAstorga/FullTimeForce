@@ -10,12 +10,9 @@ class Button extends React.Component{
     }
     componentDidMount(){
         var button=document.getElementsByClassName("ButtonContainer");
-        console.log(this.props.active);
         if(this.props.active === "true" &&  this.props.left === "true"){
-            console.log("it's true");
             button.item(0).classList.add("ButtonContainer--active");
         }else if(this.props.active === "true" &&  this.props.left === "false"){
-            console.log("it's false");
             button.item(1).classList.add("ButtonContainer--active");
         }
     }

@@ -7,7 +7,6 @@ class ResumeOptions extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            totalCommits: 0
         }
     }
     render(){
@@ -17,7 +16,7 @@ class ResumeOptions extends React.Component{
                     <div className="ResumeOptions__header">
                         <div className="ResumeOptions__totalCommitsWrapper">
                             <span className="ResumeOptions__totalCommitsDescription">Total Commits :</span>
-                            <span className="ResumeOptions__totalCommits">{this.state.totalCommits}</span>
+                            <span className="ResumeOptions__totalCommits">{this.props.totalCommits}</span>
                         </div>
                         <div className="ResumeOptions__brancheList">
                             <DropdownButton

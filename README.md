@@ -40,3 +40,10 @@ The list of the first activites defined are:
 
 ## Design
 ![App Screenshot](https://innovastorga.com/images-fulltimeforce/design1.png)
+
+## First Version
+![App Screenshot](https://innovastorga.com/images-fulltimeforce/version1.png)
+###Features
+- Get Commits of the repository (message commit, profile committer, sha code, hour of the commit, grouping by day)
+- Get the total of commits of the main branch
+

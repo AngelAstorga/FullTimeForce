@@ -21,12 +21,21 @@
     color: rgb(var(--blueDark));
     font-weight: 500;
     font-size: 15px;
+   text-align: left;
+   width: 60%;
 }
 .Commit__userContainer{
-
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
+    column-gap: 5px;
 }
 .Commit__userImg{
-
+    box-sizing: border-box;
+    width: 28px;
+    height: 28px;
+    object-fit: cover;
+    border-radius: 50%;
 }
 .Commit__commiterName{
     color: rgba(var(--green),1);
@@ -35,7 +44,6 @@
 .Commit__commitTime{
     color: rgba(var(--blue),0.7);
     font-size: 12px;
-    padding-left: 7px;
 }
 .Commit__shaContainer{
     position: absolute;

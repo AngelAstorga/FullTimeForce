@@ -1,5 +1,4 @@
 import React from "react";
-import { Octokit } from "octokit";
 import "./styles/listCommits.css";
 import {Commit} from "./Commit";
 
@@ -7,72 +6,101 @@ class ListCommits extends React.Component{
     constructor(props){
       super(props);
       this.state={
-        response:"default",
+        auxListCommits:[],
+        flagCommits:false,
+        groupDates:[],
       }  
     }
 
-    getCommits=async ()=>{
+    createGroups=()=>{
+        if(this.state.flagCommits === false){
 
-        console.log(process.env.REACT_APP_GITHUB_API);
-        console.log(process.env.REACT_APP_REPO_NAME);
-        console.log(process.env.REACT_APP_REPO_USER);
-        const octokit = new Octokit({
-            auth: process.env.REACT_APP_GITHUB_API
-          });
-          
-            const responseGitHub = await octokit.request("GET /repos/"+process.env.REACT_APP_REPO_USER+"/"+process.env.REACT_APP_REPO_NAME+"/commits", {
-              owner: 'OWNER',
-              repo: 'REPO',
-              headers: {
-                'X-GitHub-Api-Version': '2022-11-28'
-              }
-            });
-          
-          console.log(responseGitHub.data);
-          this.setState({
-            response: responseGitHub.data
-          }); 
+        
+        var currentIndex=0;
+        var groupDates= [];
+        groupDates.push([]);
+
+       var auxListCommits= this.props.listCommits.map((commit)=>{
+           commit.commit.committer.realDate =new Date(commit.commit.committer.date);
+            let auxCommitDate= new Date(commit.commit.committer.date);
+            auxCommitDate.setHours(0,0,0,0);
+            commit.commit.committer.date = auxCommitDate;
+            let newCommit= commit;
+            return newCommit;
+        });
+
+        for(var i=0;i < auxListCommits.length ;i++){
+            if(i===0){
+                groupDates[currentIndex].push(auxListCommits[i]);
+                
+            }else{
+
+                var oldDate = new Date(auxListCommits[i-1].commit.committer.date);
+                var newDate = new Date(auxListCommits[i].commit.committer.date);
+
+                if( ( oldDate - newDate) === 0){
+                     groupDates[currentIndex].push(auxListCommits[i]);
+                }else{
+                    groupDates[currentIndex + 1]=[];
+                    groupDates[currentIndex + 1].push(auxListCommits[i]);
+                    currentIndex++;
+                }
+            }
+            
+        }        
+        this.setState({
+            flagCommits:true,
+            auxListCommits: auxListCommits,
+            groupDates: groupDates,
+            flagCommits:true,
+        });
+    }
     }
 
-    componentDidMount=()=>{
-        this.getCommits();
+    componentDidMount(){
+        this.createGroups();
     }
+
 
     render(){
         return(
             <div className="ListCommitsContainer">
                 <div className="ListCommitsWrapper">
-                    <div className="ListCommits__listDateGroup">
-                        <div className="ListCommits__listDateGroupHeader">
-                            <span className="ListCommits__listDateGroupTitle"> 01 October 2023</span>
+                {this.state.groupDates.map((commitGroup, index)=>{
+                   let commitGroupTimeWrapper= commitGroup[0].commit.committer.date.toString();
+                   commitGroupTimeWrapper= commitGroupTimeWrapper.split(" ");
+                   commitGroupTimeWrapper= commitGroupTimeWrapper[0] +" "+commitGroupTimeWrapper[1]+" "+commitGroupTimeWrapper[2]+" "+commitGroupTimeWrapper[3];
+                    return(
+                        <div key={index} className="ListCommits__listDateGroup">
+                            <div className="ListCommits__listDateGroupHeader">
+                            <span className="ListCommits__listDateGroupTitle"> {commitGroupTimeWrapper}  </span>
+                            </div>
+                            <div className="ListCommits__listDateGroupBody">
+                            {commitGroup.map((commit, index)=>{
+                                let commitTimeWrapper= commit.commit.committer.realDate.toString();
+                                commitTimeWrapper= commitTimeWrapper.split(" ");
+                                commitTimeWrapper= commitTimeWrapper[4] +" "+commitTimeWrapper[5]; 
+                                return(   <Commit key={index+commit.sha}
+                                    description={commit.commit.message}
+                                    committerName= {commit.commit.author.name}
+                                    committerImg= {commit.author.avatar_url}
+                                    commitTime={commitTimeWrapper}
+                                    shaCode={commit.sha}
+                                    />
+                                    )
+                            })
+
+                            }
+                            
                         </div>
-                        <div className="ListCommits__listDateGroupBody">
-                        <Commit
-                            description="Description of commit"
-                            commiterName="Angel Astorga"
-                            commiterImg=""
-                            commitTime="23:00:02"
-                            shaCode="s8s54f7"
-                        />
-                        <Commit
-                            description="Description of commit"
-                            commiterName="Angel Astorga"
-                            commiterImg=""
-                            commitTime="23:00:02"
-                            shaCode="s8s54f7"
-                        />
-                        <Commit
-                            description="Description of commit"
-                            commiterName="Angel Astorga"
-                            commiterImg=""
-                            commitTime="23:00:02"
-                            shaCode="s8s54f7"
-                        />
                         </div>
-                    </div>
+                    )
+                    })
+                }
                 </div>
             </div>
-        );
-    }
+    
+        )}
+
 }
 export {ListCommits};

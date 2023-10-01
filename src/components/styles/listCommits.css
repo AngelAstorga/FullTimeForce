@@ -19,6 +19,7 @@
     color: rgba(var(--blue),0.8);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
+    display: block;
 }
 .ListCommits__listDateGroupBody{
     width: 100%;
