@@ -8,7 +8,7 @@ The list of the first activites defined are:
 
 
 ## List of Activities
-![App Screenshot](https://innovastorga.com/images-fulltimeforce/trello4.png)
+![App Screenshot](https://innovastorga.com/images-fulltimeforce/trello5.png)
 
 
 ## List of Technologies currently used
@@ -43,7 +43,8 @@ The list of the first activites defined are:
 
 ## First Version
 ![App Screenshot](https://innovastorga.com/images-fulltimeforce/version1.png)
-###Features
+
+### Features
 - Get Commits of the repository (message commit, profile committer, sha code, hour of the commit, grouping by day)
 - Get the total of commits of the main branch
 
