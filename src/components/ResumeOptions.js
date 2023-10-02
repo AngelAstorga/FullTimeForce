@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/resumeOption.css";
 import { Button } from "./Button";
 import { DropdownButton } from "./DropdownButton";
+import { Octokit } from "octokit";
 
 class ResumeOptions extends React.Component{
     constructor(props){
@@ -9,6 +10,32 @@ class ResumeOptions extends React.Component{
         this.state={
         }
     }
+    getNewer=()=>{
+
+    }
+
+    getOlderCommits=async()=>{
+            const octokit = new Octokit({
+              auth: process.env.REACT_APP_GITHUB_API
+            });
+        
+              await octokit.request("GET /repos/"+this.props.testUser+"/"+this.props.testRepo+"/commits?page="+this.props.lastPageRepo, {
+                owner: 'OWNER',
+                repo: 'REPO',
+                headers: {
+                  'X-GitHub-Api-Version': '2022-11-28'
+                }
+              }).then((response)=>{
+                  this.props.updateListCommits(response.data);
+              });
+
+             
+
+        }
+    componentDidMount(){
+    }
+
+
     render(){
         return(
             <div className="ResumeOptionsContainer">
@@ -26,7 +53,7 @@ class ResumeOptions extends React.Component{
                     </div>
                     <div className="ResumeOptions__buttons">
                         <Button text="Newer" left="true" active="true" />
-                        <Button text="Older" left="false" active="false"/>
+                        <Button handleOnclick={this.getOlderCommits} text="Older" left="false" active="false"/>
                     </div>
                 </div>
             </div>

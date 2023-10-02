@@ -18,7 +18,7 @@ class Button extends React.Component{
     }
     render(){
         return(
-            <button className= {this.props.left === "true" ? "ButtonContainer ButtonContainer--left":"ButtonContainer ButtonContainer--right"}>
+            <button onClick={this.props.handleOnclick} className= {this.props.left === "true" ? "ButtonContainer ButtonContainer--left":"ButtonContainer ButtonContainer--right"}>
                 {this.props.text}
             </button>
         );

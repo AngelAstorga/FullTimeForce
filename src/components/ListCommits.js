@@ -6,29 +6,28 @@ class ListCommits extends React.Component{
     constructor(props){
       super(props);
       this.state={
-        auxListCommits:[],
-        flagCommits:false,
         groupDates:[],
-      }  
+        flagGroup:false,
+    }  
     }
 
     createGroups=()=>{
-        if(this.state.flagCommits === false){
-
-        
+     
         var currentIndex=0;
         var groupDates= [];
         groupDates.push([]);
 
+
        var auxListCommits= this.props.listCommits.map((commit)=>{
-           commit.commit.committer.realDate =new Date(commit.commit.committer.date);
+           commit.commit.committer.realDate = new Date(commit.commit.committer.date);
+        //    console.log(commit.commit.committer.realDate);
             let auxCommitDate= new Date(commit.commit.committer.date);
             auxCommitDate.setHours(0,0,0,0);
             commit.commit.committer.date = auxCommitDate;
             let newCommit= commit;
             return newCommit;
         });
-
+        // console.log(auxListCommits);
         for(var i=0;i < auxListCommits.length ;i++){
             if(i===0){
                 groupDates[currentIndex].push(auxListCommits[i]);
@@ -46,27 +45,31 @@ class ListCommits extends React.Component{
                     currentIndex++;
                 }
             }
-            
-        }        
-        this.setState({
-            flagCommits:true,
-            auxListCommits: auxListCommits,
-            groupDates: groupDates,
-            flagCommits:true,
-        });
-    }
+                    }        
+                                
+            this.setState({
+                groupDates: groupDates,
+                flagGroup:true,
+            });
     }
 
     componentDidMount(){
-        this.createGroups();
+        
     }
+  
+    componentDidUpdate(prevState,prevProps){
+        if(this.props.flagCommits && this.props.flagCommits && !this.state.flagGroup){
+            console.log(" llegaron los datos");
+            this.createGroups();
+        }
 
+    }
 
     render(){
         return(
             <div className="ListCommitsContainer">
                 <div className="ListCommitsWrapper">
-                {this.state.groupDates.map((commitGroup, index)=>{
+                {this.state.flagGroup && this.state.groupDates.map((commitGroup, index)=>{
                    let commitGroupTimeWrapper= commitGroup[0].commit.committer.date.toString();
                    commitGroupTimeWrapper= commitGroupTimeWrapper.split(" ");
                    commitGroupTimeWrapper= commitGroupTimeWrapper[0] +" "+commitGroupTimeWrapper[1]+" "+commitGroupTimeWrapper[2]+" "+commitGroupTimeWrapper[3];
@@ -79,7 +82,8 @@ class ListCommits extends React.Component{
                             {commitGroup.map((commit, index)=>{
                                 let commitTimeWrapper= commit.commit.committer.realDate.toString();
                                 commitTimeWrapper= commitTimeWrapper.split(" ");
-                                commitTimeWrapper= commitTimeWrapper[4] +" "+commitTimeWrapper[5]; 
+                                commitTimeWrapper= commitTimeWrapper[4] +" "+commitTimeWrapper[5];
+                                
                                 return(   <Commit key={index+commit.sha}
                                     description={commit.commit.message}
                                     committerName= {commit.commit.author.name}
@@ -95,7 +99,7 @@ class ListCommits extends React.Component{
                         </div>
                         </div>
                     )
-                    })
+                    }) 
                 }
                 </div>
             </div>

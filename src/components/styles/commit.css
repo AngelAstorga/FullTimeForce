@@ -57,9 +57,18 @@
 .Commit__copyImg{
     width: 24px;
     height: 24px;
+    cursor:pointer;
 }
 .Commit__shaCode{
     color: rgb(var(--blueDark));
     font-weight: 600;
     font-size: 14px;
+}
+.Commit__modalCopy{
+    font-size: 11px;
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    color: rgb(var(--green));
+    font-weight: 600;
 }
